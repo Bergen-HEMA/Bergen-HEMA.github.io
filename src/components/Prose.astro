@@ -1,0 +1,15 @@
+---
+import type { Prose } from '../content/types';
+
+interface Props {
+  /** Paragraphs, which may contain simple inline HTML authored in this repo. */
+  body: Prose;
+  class?: string;
+}
+
+const { body, class: className = '' } = Astro.props;
+---
+
+<div class:list={['rich', className]}>
+  {body.map((paragraph) => <p set:html={paragraph} />)}
+</div>

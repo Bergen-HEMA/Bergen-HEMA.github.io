@@ -1,0 +1,29 @@
+---
+import type { PriceRow } from '../content/types';
+import type { Locale } from '../site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  rows: PriceRow[];
+  locale: Locale;
+}
+
+const { rows, locale } = Astro.props;
+const strings = t(locale);
+---
+
+<ul class="grid gap-4 sm:grid-cols-3">
+  {
+    rows.map((row) => (
+      <li class="border-line bg-surface-raised flex flex-col border p-6">
+        <span class="text-ink-muted text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+          {row.label}
+        </span>
+        <span class="font-display text-ink mt-3 text-4xl leading-none font-semibold">
+          {strings.currency(row.amount)}
+        </span>
+        {row.note && <span class="text-ink-faint mt-3 text-sm leading-relaxed">{row.note}</span>}
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import TickerBar from '../components/TickerBar.astro';
+import HomeSections from '../components/HomeSections.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getContent } from '../content';
+import { getAlt } from '../content/alt';
+import hero from '../assets/photos/hero-crossed-swords.jpg';
+import ctaImage from '../assets/photos/fencers-waiting.jpg';
+
+const locale = 'no' as const;
+const content = getContent(locale).home;
+const alt = getAlt(locale);
+---
+
+<Base locale={locale} current="home" structuredData>
+  <Hero
+    eyebrow={content.hero.eyebrow}
+    title={content.hero.title}
+    lead={content.hero.lead}
+    primary={content.hero.primary}
+    secondary={content.hero.secondary}
+    secondaryHref="#hema"
+    image={hero}
+    imageAlt={alt.heroCrossedSwords}
+    locale={locale}
+  />
+
+  <TickerBar locale={locale} />
+
+  <HomeSections content={content} locale={locale} />
+
+  <CtaBand
+    title={content.cta.title}
+    lead={content.cta.lead}
+    image={ctaImage}
+    imageAlt={alt.fencersWaiting}
+    locale={locale}
+    position="50% 30%"
+  />
+</Base>

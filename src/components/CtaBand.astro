@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site, type Locale } from '../site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  lead: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  locale: Locale;
+  position?: string;
+}
+
+const { title, lead, image, imageAlt, locale, position = '50% 45%' } = Astro.props;
+const strings = t(locale);
+---
+
+<section class="relative isolate overflow-hidden">
+  <Image
+    src={image}
+    alt={imageAlt}
+    widths={[640, 960, 1440, 1920]}
+    sizes="100vw"
+    loading="lazy"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+    style={`object-position: ${position}`}
+  />
+  <div class="scrim-full absolute inset-0 -z-10"></div>
+
+  <div class="container-page py-(--spacing-section) text-center">
+    <h2 class="text-h2 text-shadow-cinema mx-auto max-w-[18ch]">{title}</h2>
+    <p class="text-lead text-ink text-shadow-cinema mx-auto mt-6 max-w-[52ch] opacity-90">{lead}</p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href={site.links.spond} target="_blank" rel="noopener" class="btn btn-primary">
+        {strings.tryCta}
+      </a>
+      <a href={`mailto:${site.email}`} class="btn btn-ghost">{strings.emailUs}</a>
+    </div>
+  </div>
+</section>

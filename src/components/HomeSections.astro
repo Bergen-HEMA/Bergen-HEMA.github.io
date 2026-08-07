@@ -1,0 +1,185 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import Faq from './Faq.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import type { Locale } from '../site';
+
+import sparringLunge from '../assets/photos/sparring-lunge.jpg';
+import archway from '../assets/photos/archway-bergenhus.jpg';
+import longswordStrike from '../assets/photos/longsword-strike.jpg';
+import portraitBraid from '../assets/photos/portrait-braid.jpg';
+import lineupBlueDoor from '../assets/photos/lineup-blue-door.jpg';
+import swordsStoneWall from '../assets/photos/swords-stone-wall.jpg';
+
+interface Props {
+  content: SiteContent['home'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+---
+
+{/* ---- What is HEMA ------------------------------------------------------ */}
+<Section id="hema" labelledby="hema-title">
+  {/* Top-aligned: the copy is taller than the photograph, and centring it
+      leaves a gap above the image that reads as a mistake. */}
+  <div class="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <p class="eyebrow">{content.what.eyebrow}</p>
+      <h2 id="hema-title" class="text-h2 mt-5">{content.what.title}</h2>
+      <Prose body={content.what.body} class="mt-7" />
+    </div>
+    <div class="lg:col-span-7">
+      <Figure
+        image={sparringLunge}
+        alt={alt.sparringLunge}
+        sizes="(min-width: 1024px) 58vw, 100vw"
+        aspect="aspect-[3/2]"
+      />
+    </div>
+  </div>
+</Section>
+
+{/* ---- Is HEMA for me? --------------------------------------------------- */}
+<Section tone="raised" divider labelledby="forme-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <p class="eyebrow">{content.forMe.eyebrow}</p>
+      <h2 id="forme-title" class="text-h2 mt-5">{content.forMe.title}</h2>
+      <p class="text-lead text-ink-muted mt-7">{content.forMe.lead}</p>
+
+      {/* One portrait at the full width of the column rather than two
+          thumbnails — at this column width a pair reads as clip art. */}
+      <div class="mt-10 hidden lg:block">
+        <Figure
+          image={portraitBraid}
+          alt={alt.portraitBraid}
+          sizes="34vw"
+          aspect="aspect-[4/5]"
+          position="50% 22%"
+        />
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <ul class="grid gap-px sm:grid-cols-2">
+        {
+          content.forMe.points.map((point) => (
+            <li class="bg-surface outline-line p-7 outline lg:p-8">
+              <h3 class="text-h3 text-ink">{point.title}</h3>
+              <p class="text-ink-muted mt-3 leading-relaxed">{point.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Section>
+
+{/* ---- European heritage — full-bleed image band ------------------------- */}
+<section class="relative isolate overflow-hidden" aria-labelledby="heritage-title">
+  <div class="grid lg:grid-cols-2">
+    <div class="relative min-h-[22rem] lg:min-h-[38rem]">
+      <Figure
+        image={archway}
+        alt={alt.archway}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        fill
+        position="50% 42%"
+      />
+    </div>
+    <div class="bg-surface-sunken flex items-center px-(--spacing-gutter) py-(--spacing-section)">
+      <div class="container-prose mx-auto lg:mx-0 lg:pl-4 xl:pl-12">
+        <p class="eyebrow">{content.heritage.eyebrow}</p>
+        <h2 id="heritage-title" class="text-h2 mt-5">{content.heritage.title}</h2>
+        <Prose body={content.heritage.body} class="mt-7" />
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* ---- German longsword -------------------------------------------------- */}
+<Section labelledby="longsword-title">
+  <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="order-2 lg:order-1 lg:col-span-5">
+      <Figure
+        image={longswordStrike}
+        alt={alt.longswordStrike}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        aspect="aspect-[4/5]"
+        position="50% 18%"
+      />
+    </div>
+    <div class="order-1 lg:order-2 lg:col-span-7">
+      <p class="eyebrow">{content.longsword.eyebrow}</p>
+      <h2 id="longsword-title" class="text-h2 mt-5">{content.longsword.title}</h2>
+      <Prose body={content.longsword.body} class="mt-7 max-w-[52ch]" />
+
+      <div class="mt-12">
+        <Figure
+          image={swordsStoneWall}
+          alt={alt.swordsStoneWall}
+          sizes="(min-width: 1024px) 56vw, 100vw"
+          aspect="aspect-[21/9]"
+        />
+      </div>
+    </div>
+  </div>
+</Section>
+
+{/* ---- Getting started --------------------------------------------------- */}
+<Section tone="raised" divider labelledby="start-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow">{content.start.eyebrow}</p>
+      <h2 id="start-title" class="text-h2 mt-5">{content.start.title}</h2>
+      <p class="text-ink-muted mt-6 leading-relaxed">{content.start.lead}</p>
+      <div class="mt-10 hidden lg:block">
+        <Figure
+          image={lineupBlueDoor}
+          alt={alt.lineupBlueDoor}
+          sizes="30vw"
+          aspect="aspect-[4/3]"
+        />
+      </div>
+    </div>
+
+    {/* Fixed-width number column so every step title starts on the same
+        vertical line, whatever the digits are. */}
+    <ol class="lg:col-span-8">
+      {
+        content.start.steps.map((step, index) => (
+          <li class="border-line grid grid-cols-[2.75rem_1fr] gap-x-6 gap-y-2 border-t py-8 last:border-b sm:grid-cols-[4.25rem_1fr] sm:gap-x-10">
+            <span
+              aria-hidden="true"
+              class="font-display text-accent text-4xl leading-none font-semibold tabular-nums sm:text-5xl"
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3 class="text-h3 text-ink">{step.title}</h3>
+              <p class="text-ink-muted mt-3 max-w-[54ch] leading-relaxed">{step.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Section>
+
+{/* ---- FAQ --------------------------------------------------------------- */}
+<Section labelledby="faq-title">
+  <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow">{content.faq.eyebrow}</p>
+      <h2 id="faq-title" class="text-h2 mt-5">{content.faq.title}</h2>
+    </div>
+    <div class="lg:col-span-8">
+      <Faq items={content.faq.items} />
+    </div>
+  </div>
+</Section>

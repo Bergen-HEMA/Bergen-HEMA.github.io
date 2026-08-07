@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/brand/mark.png';
+import type { Locale } from '../site';
+import { path, t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** Hides the tagline on tight layouts such as the sticky header. */
+  compact?: boolean;
+  class?: string;
+}
+
+const { locale, compact = false, class: className = '' } = Astro.props;
+const strings = t(locale);
+---
+
+<a
+  href={path(locale, 'home')}
+  class:list={['group flex items-center gap-3 no-underline sm:gap-4', className]}
+  aria-label="Bergen HEMA"
+>
+  <Image
+    src={mark}
+    alt=""
+    width={104}
+    densities={[1, 2]}
+    loading="eager"
+    class="w-[68px] shrink-0 transition-opacity duration-300 group-hover:opacity-80 sm:w-[88px]"
+  />
+  <span class="flex flex-col leading-none">
+    <span
+      class="text-ink text-[0.9rem] font-semibold tracking-[0.16em] uppercase sm:text-base"
+      >Bergen&nbsp;HEMA</span
+    >
+    {
+      !compact && (
+        <span class="text-accent-ink mt-1.5 hidden text-[0.58rem] font-semibold tracking-[0.2em] uppercase md:block">
+          {strings.tagline}
+        </span>
+      )
+    }
+  </span>
+</a>

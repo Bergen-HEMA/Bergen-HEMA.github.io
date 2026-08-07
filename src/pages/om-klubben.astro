@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AboutSections from '../components/AboutSections.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getContent } from '../content';
+import { getAlt } from '../content/alt';
+import headerImage from '../assets/photos/archway-bergenhus.jpg';
+import ctaImage from '../assets/photos/sparring-lunge.jpg';
+
+const locale = 'no' as const;
+const all = getContent(locale);
+const content = all.about;
+const alt = getAlt(locale);
+---
+
+<Base locale={locale} current="about">
+  <PageHeader
+    eyebrow={content.eyebrow}
+    title={content.title}
+    lead={content.lead}
+    image={headerImage}
+    imageAlt={alt.archway}
+    position="50% 62%"
+  />
+
+  <AboutSections content={content} locale={locale} />
+
+  <CtaBand
+    title={all.home.cta.title}
+    lead={all.home.cta.lead}
+    image={ctaImage}
+    imageAlt={alt.sparringLunge}
+    locale={locale}
+    position="50% 55%"
+  />
+</Base>

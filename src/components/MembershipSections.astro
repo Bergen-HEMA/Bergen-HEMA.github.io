@@ -1,0 +1,174 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import PriceTable from './PriceTable.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import { site, type Locale } from '../site';
+import { t } from '../i18n/ui';
+
+import trainingHall from '../assets/photos/training-hall.jpg';
+import fencersWaiting from '../assets/photos/fencers-waiting.jpg';
+
+interface Props {
+  content: SiteContent['membership'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+const strings = t(locale);
+---
+
+{/* ---- Who can train, and what to bring ---------------------------------- */}
+<Section labelledby="who-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7">
+      <h2 id="who-title" class="text-h2">{content.who.title}</h2>
+      <Prose body={content.who.body} class="mt-6 max-w-[54ch]" />
+
+      <div class="border-line bg-surface-raised mt-10 border p-7 lg:p-9">
+        <h3 class="text-h3">{content.bring.title}</h3>
+        <p class="text-ink-muted mt-3">{content.bring.lead}</p>
+        <ul class="mt-6 space-y-3">
+          {
+            content.bring.items.map((item) => (
+              <li class="flex items-start gap-3.5">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                  class="text-accent mt-1 shrink-0"
+                >
+                  <path d="M2.5 8.5 6.2 12 13.5 4.2" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+                <span class="text-ink">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-ink-faint border-line mt-6 border-t pt-5 text-sm leading-relaxed">
+          {content.bring.note}
+        </p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5">
+      <Figure
+        image={trainingHall}
+        alt={alt.trainingHall}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        aspect="aspect-[4/5]"
+        position="50% 45%"
+      />
+    </div>
+  </div>
+</Section>
+
+{/* ---- Venue and times --------------------------------------------------- */}
+<Section tone="raised" divider labelledby="venue-title">
+  <div class="grid gap-12 md:grid-cols-2 lg:gap-16">
+    <div>
+      <p class="eyebrow">{strings.footer.practical}</p>
+      <h2 id="venue-title" class="text-h2 mt-5">{content.venue.title}</h2>
+      <Prose body={content.venue.body} class="mt-6" />
+
+      <address class="text-ink mt-8 text-lg leading-relaxed not-italic">
+        {site.venue.name}<br />
+        {site.venue.street}<br />
+        {site.venue.postalCode}&nbsp;{site.venue.city}
+      </address>
+
+      <a
+        href={site.venue.mapUrl}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost mt-7"
+      >
+        {strings.showOnMap}
+      </a>
+    </div>
+
+    <div>
+      <h2 class="text-h2">{content.times.title}</h2>
+      <div
+        class="border-line bg-surface mt-7 flex flex-col gap-2 border p-8 lg:p-10"
+      >
+        <span class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+          {site.training.day[locale]}
+        </span>
+        <span class="font-display text-ink text-5xl leading-none font-semibold tabular-nums">
+          {site.training.start}<span class="text-ink-faint">–</span>{site.training.end}
+        </span>
+      </div>
+      <Prose body={content.times.body} class="mt-7 text-base" />
+    </div>
+  </div>
+</Section>
+
+{/* ---- Fees -------------------------------------------------------------- */}
+<Section labelledby="fees-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow">{strings.joinCta}</p>
+      <h2 id="fees-title" class="text-h2 mt-5">{content.fees.title}</h2>
+      <p class="text-ink-muted mt-6 leading-relaxed">{content.fees.lead}</p>
+    </div>
+
+    <div class="lg:col-span-8">
+      <PriceTable rows={content.fees.rows} locale={locale} />
+
+      <p class="text-ink-muted mt-8 max-w-[62ch] leading-relaxed">{content.fees.rights}</p>
+
+      <div class="border-line mt-10 border-t pt-10">
+        <h3 class="text-h3">{content.fees.payment.title}</h3>
+        <Prose body={content.fees.payment.body} class="mt-4 max-w-[58ch] text-base" />
+
+        <dl class="mt-7 grid gap-px sm:grid-cols-2">
+          <div class="bg-surface-raised outline-line p-6 outline">
+            <dt class="text-ink-faint text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+              {strings.bankAccount}
+            </dt>
+            <dd class="text-ink mt-2 font-mono text-lg tabular-nums">
+              {site.payment.bankAccount}
+            </dd>
+          </div>
+          <div class="bg-surface-raised outline-line p-6 outline">
+            <dt class="text-ink-faint text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+              Vipps
+            </dt>
+            <dd class="text-ink mt-2 font-mono text-lg tabular-nums">{site.payment.vipps}</dd>
+          </div>
+        </dl>
+
+        <p class="border-accent text-ink-muted mt-7 max-w-[62ch] border-l-2 py-1 pl-5 text-sm leading-relaxed">
+          {content.fees.reference}
+        </p>
+      </div>
+
+      <a
+        href={site.links.spond}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary mt-10"
+      >
+        {strings.joinCta}
+      </a>
+    </div>
+  </div>
+</Section>
+
+{/* ---- Closing image ----------------------------------------------------- */}
+<div class="container-page pb-(--spacing-section)">
+  <Figure
+    image={fencersWaiting}
+    alt={alt.fencersWaiting}
+    sizes="100vw"
+    widths={[640, 960, 1280, 1600, 1800]}
+    aspect="aspect-[21/9]"
+    position="50% 28%"
+  />
+</div>

@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  caption?: string;
+  /** Layout hint passed to the browser so it downloads the right variant. */
+  sizes?: string;
+  widths?: number[];
+  aspect?: string;
+  position?: string;
+  class?: string;
+  eager?: boolean;
+  /**
+   * Stretches the figure to fill a positioned ancestor. Set through a prop
+   * rather than by passing `absolute inset-0` in `class`, because `absolute`
+   * and the base `relative` are both position utilities in the same cascade
+   * layer — which of them won would come down to Tailwind's emit order.
+   */
+  fill?: boolean;
+}
+
+const {
+  image,
+  alt,
+  caption,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  widths = [480, 720, 960, 1280, 1600],
+  aspect,
+  position = '50% 50%',
+  class: className = '',
+  eager = false,
+  fill = false,
+} = Astro.props;
+---
+
+<figure class:list={['group', fill ? 'absolute inset-0' : 'relative', className]}>
+  <div class:list={['bg-surface-raised relative h-full overflow-hidden', aspect]}>
+    <Image
+      src={image}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      loading={eager ? 'eager' : 'lazy'}
+      class:list={[
+        'h-full w-full object-cover transition-transform duration-[900ms] ease-(--ease-out-soft) group-hover:scale-[1.03]',
+      ]}
+      style={`object-position: ${position}`}
+    />
+  </div>
+  {
+    caption && (
+      <figcaption class="text-ink-faint mt-3 text-xs leading-relaxed">{caption}</figcaption>
+    )
+  }
+</figure>

@@ -1,0 +1,105 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import { site, type Locale } from '../site';
+
+import eventSparring from '../assets/photos/event-sparring.jpg';
+import eventPair from '../assets/photos/event-pair.jpg';
+import eventGroup from '../assets/photos/event-group.jpg';
+import eventWarmup from '../assets/photos/event-warmup.jpg';
+
+interface Props {
+  content: SiteContent['groups'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+
+// One photograph per offering, in the order they are listed.
+const offeringImages = [
+  { image: eventSparring, alt: alt.eventSparring },
+  { image: eventPair, alt: alt.eventPair },
+];
+---
+
+{/* ---- Offerings --------------------------------------------------------- */}
+<Section labelledby="offerings-title">
+  <h2 id="offerings-title" class="sr-only">{content.title}</h2>
+  <div class="space-y-(--spacing-section)">
+    {
+      content.offerings.map((offering, index) => (
+        <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class:list={['lg:col-span-6', index % 2 === 1 && 'lg:order-2']}>
+            <Figure
+              image={offeringImages[index]!.image}
+              alt={offeringImages[index]!.alt}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              aspect="aspect-[3/2]"
+            />
+          </div>
+          <div class:list={['lg:col-span-6', index % 2 === 1 && 'lg:order-1']}>
+            <h3 class="text-h2">{offering.title}</h3>
+            <Prose body={offering.body} class="mt-6 max-w-[48ch]" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+{/* ---- What is included -------------------------------------------------- */}
+<Section tone="raised" divider labelledby="included-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <h2 id="included-title" class="text-h2">{content.included.title}</h2>
+      <ul class="mt-8 space-y-4">
+        {
+          content.included.items.map((item) => (
+            <li class="text-ink flex items-start gap-3.5 leading-relaxed">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+                class="text-accent mt-1.5 shrink-0"
+              >
+                <path d="M2.5 8.5 6.2 12 13.5 4.2" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+      <Figure
+        image={eventGroup}
+        alt={alt.eventGroup}
+        sizes="(min-width: 1024px) 30vw, 50vw"
+        aspect="aspect-[4/5]"
+      />
+      <Figure
+        image={eventWarmup}
+        alt={alt.eventWarmup}
+        sizes="(min-width: 1024px) 30vw, 50vw"
+        aspect="aspect-[4/5]"
+      />
+    </div>
+  </div>
+</Section>
+
+{/* ---- Enquire ----------------------------------------------------------- */}
+<Section labelledby="groups-cta-title">
+  <div class="border-line bg-surface-raised border p-10 text-center lg:p-16">
+    <h2 id="groups-cta-title" class="text-h2 mx-auto max-w-[20ch]">{content.cta.title}</h2>
+    <p class="text-ink-muted mx-auto mt-6 max-w-[52ch] leading-relaxed">{content.cta.lead}</p>
+    <a href={`mailto:${site.email}`} class="btn btn-primary mt-9">{content.cta.button}</a>
+    <p class="text-ink-faint mt-6 text-sm">{site.email}</p>
+  </div>
+</Section>

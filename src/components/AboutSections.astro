@@ -1,0 +1,116 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import { site, type Locale } from '../site';
+import { t } from '../i18n/ui';
+
+import lineupBlueDoor from '../assets/photos/lineup-blue-door.jpg';
+import outdoorTraining from '../assets/photos/outdoor-training.jpg';
+import portraitRedJacket from '../assets/photos/portrait-red-jacket.jpg';
+
+interface Props {
+  content: SiteContent['about'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+const strings = t(locale);
+---
+
+{/* ---- Who we are -------------------------------------------------------- */}
+<Section labelledby="about-body-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7">
+      <h2 id="about-body-title" class="sr-only">{content.title}</h2>
+      <Prose body={content.body} class="max-w-[56ch]" />
+
+      <dl class="border-line mt-12 grid gap-8 border-t pt-8 sm:grid-cols-2">
+        <div>
+          <dt class="text-ink-faint text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+            {strings.founded}
+          </dt>
+          <dd class="font-display text-ink mt-2 text-3xl font-semibold tabular-nums">
+            {site.foundedYear}
+          </dd>
+          <dd class="text-ink-muted mt-3 text-sm leading-relaxed">
+            {site.founders.join(', ')}
+          </dd>
+        </div>
+        <div>
+          <dt class="text-ink-faint text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+            {strings.footer.orgNumber}
+          </dt>
+          <dd class="font-display text-ink mt-2 text-3xl font-semibold tabular-nums">
+            {site.orgNumber}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="lg:col-span-5">
+      <Figure
+        image={portraitRedJacket}
+        alt={alt.portraitRedJacket}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        aspect="aspect-[4/5]"
+        position="50% 25%"
+      />
+    </div>
+  </div>
+</Section>
+
+{/* ---- The board --------------------------------------------------------- */}
+<Section tone="raised" divider labelledby="board-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h2 id="board-title" class="text-h2 mt-5">{content.boardTitle}</h2>
+      <p class="text-ink-muted mt-6 leading-relaxed">{content.boardLead}</p>
+      <div class="mt-10 hidden lg:block">
+        <Figure
+          image={outdoorTraining}
+          alt={alt.outdoorTraining}
+          sizes="30vw"
+          widths={[320, 480, 653]}
+          aspect="aspect-[3/4]"
+        />
+      </div>
+    </div>
+
+    <ul class="lg:col-span-8">
+      {
+        site.board.map((member) => (
+          <li class="border-line flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-t py-6 last:border-b">
+            <span class="font-display text-ink text-2xl font-semibold">{member.name}</span>
+            <span class="text-ink-muted text-sm tracking-wide">{member.role[locale]}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>
+
+{/* ---- Bylaws ------------------------------------------------------------ */}
+<Section labelledby="bylaws-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7">
+      <h2 id="bylaws-title" class="text-h2">{content.bylaws.title}</h2>
+      <Prose body={content.bylaws.body} class="mt-6 max-w-[56ch]" />
+      <a href={site.links.bylaws} target="_blank" rel="noopener" class="btn btn-ghost mt-8">
+        {content.bylaws.linkLabel}
+      </a>
+    </div>
+    <div class="lg:col-span-5">
+      <Figure
+        image={lineupBlueDoor}
+        alt={alt.lineupBlueDoor}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        aspect="aspect-[4/3]"
+      />
+    </div>
+  </div>
+</Section>

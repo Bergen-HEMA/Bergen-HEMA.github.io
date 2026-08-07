@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import GroupsSections from '../components/GroupsSections.astro';
+import { getContent } from '../content';
+import { getAlt } from '../content/alt';
+import headerImage from '../assets/photos/event-group.jpg';
+
+const locale = 'no' as const;
+const content = getContent(locale).groups;
+const alt = getAlt(locale);
+---
+
+<Base locale={locale} current="groups">
+  <PageHeader
+    eyebrow={content.eyebrow}
+    title={content.title}
+    lead={content.lead}
+    image={headerImage}
+    imageAlt={alt.eventGroup}
+    position="50% 40%"
+  />
+
+  <GroupsSections content={content} locale={locale} />
+</Base>

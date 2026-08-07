@@ -1,0 +1,127 @@
+---
+import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, type Locale } from '../site';
+import { getContent } from '../content';
+import { otherLocale, routes, t, type RouteKey } from '../i18n/ui';
+import '../styles/global.css';
+
+interface Props {
+  locale: Locale;
+  current: RouteKey;
+  /** Overrides the JSON-LD emitted on the front page only. */
+  structuredData?: boolean;
+}
+
+const { locale, current, structuredData = false } = Astro.props;
+
+const strings = t(locale);
+const meta = getContent(locale).meta[current];
+const other = otherLocale(locale);
+
+const canonical = new URL(routes[current][locale], site.url).href;
+const ogImage = new URL('/og-image.jpg', site.url).href;
+
+// The front page title is already a full sentence; inner pages get the club
+// name appended so a browser tab or search result stands on its own.
+const title = current === 'home' ? meta.title : `${meta.title} — ${site.name}`;
+
+const organisation = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsClub',
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  description: meta.description,
+  logo: new URL('/icon-512.png', site.url).href,
+  image: ogImage,
+  foundingDate: String(site.foundedYear),
+  sport: 'Historical European Martial Arts',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.venue.street,
+    postalCode: site.venue.postalCode,
+    addressLocality: site.venue.city,
+    addressCountry: site.venue.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.venue.latitude,
+    longitude: site.venue.longitude,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.training.schemaDay,
+      opens: site.training.start,
+      closes: site.training.end,
+    },
+  ],
+  sameAs: [site.links.facebook, site.links.instagram],
+};
+---
+
+<!doctype html>
+<html lang={strings.htmlLang} class="scroll-pt-24">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="nb" href={new URL(routes[current].no, site.url).href} />
+    <link rel="alternate" hreflang="en" href={new URL(routes[current].en, site.url).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(routes[current].no, site.url).href} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#12100e" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={locale === 'no' ? 'nb_NO' : 'en_GB'} />
+    <meta property="og:locale:alternate" content={other === 'no' ? 'nb_NO' : 'en_GB'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="To fektere krysser langsverd foran en gammel dør på Bergenhus" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <Font cssVariable="--font-fraunces" preload />
+    <Font cssVariable="--font-inter" preload />
+
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(organisation)} is:inline />
+      )
+    }
+  </head>
+
+  <body id="top" class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="bg-accent sr-only px-5 py-3 text-sm font-semibold text-white focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100]"
+    >
+      {strings.skipToContent}
+    </a>
+
+    <Header locale={locale} current={current} />
+
+    {/* No top padding here: the front page hero deliberately runs up behind the
+        translucent header, and inner pages add their own via <PageHeader>. */}
+    <main id="main" class="grow">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+interface Props {
+  id?: string;
+  /** `sunken` and `raised` alternate the background to separate stacked bands. */
+  tone?: 'base' | 'raised' | 'sunken';
+  /** Draws a hairline above the section. */
+  divider?: boolean;
+  class?: string;
+  labelledby?: string;
+}
+
+const { id, tone = 'base', divider = false, class: className = '', labelledby } = Astro.props;
+
+const tones = {
+  base: 'bg-surface',
+  raised: 'bg-surface-raised',
+  sunken: 'bg-surface-sunken',
+} as const;
+---
+
+<section
+  id={id}
+  aria-labelledby={labelledby}
+  class:list={[
+    'py-(--spacing-section)',
+    tones[tone],
+    divider && 'border-line border-t',
+    className,
+  ]}
+>
+  <div class="container-page">
+    <slot />
+  </div>
+</section>

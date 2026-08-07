@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/brand/mark.png';
+import { site, type Locale } from '../site';
+import { navOrder, path, t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+const day = site.training.day[locale];
+const year = new Date().getFullYear();
+
+const social = [
+  { label: 'Facebook', href: site.links.facebook },
+  { label: 'Instagram', href: site.links.instagram },
+  { label: 'Spond', href: site.links.spond },
+];
+---
+
+<footer class="bg-surface-sunken border-line border-t">
+  <div class="container-page py-16 lg:py-20">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+      <div class="lg:col-span-1">
+        <Image src={mark} alt="" width={132} densities={[1, 2]} loading="lazy" class="w-[120px] opacity-90" />
+        <p class="text-ink mt-5 text-sm font-semibold tracking-[0.16em] uppercase">Bergen&nbsp;HEMA</p>
+        <p class="text-ink-muted mt-3 max-w-[26ch] text-sm leading-relaxed">
+          {strings.footer.builtNote}
+        </p>
+      </div>
+
+      <nav aria-label={strings.footer.trainWithUs}>
+        <h2 class="eyebrow eyebrow-plain">{strings.footer.trainWithUs}</h2>
+        <ul class="mt-5 space-y-2.5">
+          {
+            navOrder.map((key) => (
+              <li>
+                <a
+                  href={path(locale, key)}
+                  class="text-ink-muted hover:text-ink text-sm no-underline transition-colors duration-200"
+                >
+                  {strings.nav[key]}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="eyebrow eyebrow-plain">{strings.footer.practical}</h2>
+        <address class="mt-5 space-y-3 text-sm not-italic">
+          <p class="text-ink font-medium">
+            {strings.trainingTime(day, site.training.start, site.training.end)}
+          </p>
+          <p class="text-ink-muted leading-relaxed">
+            {site.venue.name}<br />
+            {site.venue.street}<br />
+            {site.venue.postalCode}&nbsp;{site.venue.city}
+          </p>
+          <p>
+            <a
+              href={`mailto:${site.email}`}
+              class="text-accent-ink hover:text-ink text-sm no-underline transition-colors duration-200"
+            >
+              {site.email}
+            </a>
+          </p>
+        </address>
+      </div>
+
+      <div>
+        <h2 class="eyebrow eyebrow-plain">{strings.footer.followUs}</h2>
+        <ul class="mt-5 space-y-2.5">
+          {
+            social.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener"
+                  class="text-ink-muted hover:text-ink group inline-flex items-center gap-2 text-sm no-underline transition-colors duration-200"
+                >
+                  {item.label}
+                  <svg
+                    width="9"
+                    height="9"
+                    viewBox="0 0 9 9"
+                    fill="none"
+                    aria-hidden="true"
+                    class="opacity-50 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  >
+                    <path d="M1 8L8 1M8 1H2.5M8 1v5.5" stroke="currentColor" stroke-width="1.2" />
+                  </svg>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-line mt-14 flex flex-col gap-4 border-t pt-8 text-xs sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="text-ink-faint">
+        {`© ${year} Bergen HEMA · ${strings.footer.orgNumber} ${site.orgNumber}`}
+      </p>
+      <a
+        href="#top"
+        class="text-ink-faint hover:text-ink no-underline transition-colors duration-200"
+      >
+        {strings.backToTop} ↑
+      </a>
+    </div>
+  </div>
+</footer>

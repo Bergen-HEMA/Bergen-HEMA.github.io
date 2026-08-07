@@ -1,0 +1,39 @@
+---
+import { site, type Locale } from '../site';
+import { path, t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+
+// The single most useful thing on the site: when and where to turn up.
+const facts = [
+  strings.trainingTime(site.training.day[locale], site.training.start, site.training.end),
+  site.venue.name,
+  strings.freeFirst,
+];
+---
+
+<div class="border-line bg-surface-raised border-y">
+  <div
+    class="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 text-center text-[0.7rem] font-semibold tracking-[0.18em] uppercase sm:text-xs"
+  >
+    {
+      facts.map((fact, index) => (
+        <>
+          {index > 0 && <span aria-hidden="true" class="text-accent-ink hidden sm:inline">·</span>}
+          <span class={index === 0 ? 'text-ink' : 'text-ink-muted'}>{fact}</span>
+        </>
+      ))
+    }
+    <a
+      href={path(locale, 'membership')}
+      class="text-accent-ink hover:text-ink underline decoration-1 underline-offset-4 transition-colors duration-200"
+    >
+      {strings.nav.membership}
+    </a>
+  </div>
+</div>

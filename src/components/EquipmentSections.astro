@@ -1,0 +1,81 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import type { Locale } from '../site';
+
+import swordRedGrip from '../assets/photos/sword-red-grip.jpg';
+import glovesBind from '../assets/photos/gloves-bind.jpg';
+
+interface Props {
+  content: SiteContent['equipment'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+---
+
+{/* ---- What beginners actually need -------------------------------------- */}
+<Section labelledby="beginner-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7">
+      <h2 id="beginner-title" class="text-h2">{content.beginner.title}</h2>
+      <Prose body={content.beginner.body} class="mt-6 max-w-[56ch]" />
+    </div>
+    <div class="lg:col-span-5">
+      <Figure
+        image={swordRedGrip}
+        alt={alt.swordRedGrip}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        aspect="aspect-[4/5]"
+        position="50% 40%"
+      />
+    </div>
+  </div>
+</Section>
+
+{/* ---- The full kit ------------------------------------------------------ */}
+<Section tone="raised" divider labelledby="full-title">
+  <div class="max-w-[52ch]">
+    <p class="eyebrow">{content.eyebrow}</p>
+    <h2 id="full-title" class="text-h2 mt-5">{content.fullTitle}</h2>
+    <p class="text-ink-muted mt-6 leading-relaxed">{content.fullLead}</p>
+  </div>
+
+  <div class="mt-14 space-y-14">
+    {
+      content.groups.map((group) => (
+        <div class="border-line grid gap-6 border-t pt-8 lg:grid-cols-12 lg:gap-16">
+          <h3 class="text-ink lg:col-span-3 text-[0.75rem] font-semibold tracking-[0.2em] uppercase">
+            {group.title}
+          </h3>
+          <dl class="lg:col-span-9 space-y-7">
+            {group.items.map((item) => (
+              <div>
+                <dt class="font-display text-ink text-xl font-semibold">{item.title}</dt>
+                <dd class="rich mt-2 max-w-[64ch] text-base" set:html={item.body} />
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="border-accent text-ink-muted mt-14 max-w-[62ch] border-l-2 py-1 pl-5 leading-relaxed">
+    {content.outro}
+  </p>
+</Section>
+
+<div class="container-page py-(--spacing-section)">
+  <Figure
+    image={glovesBind}
+    alt={alt.glovesBind}
+    sizes="100vw"
+    widths={[640, 960, 1280, 1600, 2000, 2400]}
+    aspect="aspect-[21/9]"
+  />
+</div>

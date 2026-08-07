@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ContactSections from '../../components/ContactSections.astro';
+import { getContent } from '../../content';
+import { getAlt } from '../../content/alt';
+import headerImage from '../../assets/photos/lineup-blue-door.jpg';
+
+const locale = 'en' as const;
+const content = getContent(locale).contact;
+const alt = getAlt(locale);
+---
+
+<Base locale={locale} current="contact">
+  <PageHeader
+    eyebrow={content.eyebrow}
+    title={content.title}
+    lead={content.lead}
+    image={headerImage}
+    imageAlt={alt.lineupBlueDoor}
+    position="50% 45%"
+  />
+
+  <ContactSections content={content} locale={locale} />
+</Base>

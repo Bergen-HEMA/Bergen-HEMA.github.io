@@ -1,0 +1,111 @@
+---
+import Section from './Section.astro';
+import Prose from './Prose.astro';
+import Figure from './Figure.astro';
+import type { SiteContent } from '../content/types';
+import { getAlt } from '../content/alt';
+import { site, type Locale } from '../site';
+import { t } from '../i18n/ui';
+
+import sparringPair from '../assets/photos/sparring-pair.jpg';
+
+interface Props {
+  content: SiteContent['contact'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const alt = getAlt(locale);
+const strings = t(locale);
+
+const channels = [
+  {
+    title: content.emailTitle,
+    body: content.emailBody,
+    href: `mailto:${site.email}`,
+    label: site.email,
+    external: false,
+  },
+  {
+    title: content.spondTitle,
+    body: content.spondBody,
+    href: site.links.spond,
+    label: 'spond.com',
+    external: true,
+  },
+];
+---
+
+{/* ---- How to reach us --------------------------------------------------- */}
+<Section labelledby="channels-title">
+  <h2 id="channels-title" class="sr-only">{content.title}</h2>
+
+  <div class="grid gap-px md:grid-cols-2">
+    {
+      channels.map((channel) => (
+        <a
+          href={channel.href}
+          target={channel.external ? '_blank' : undefined}
+          rel={channel.external ? 'noopener' : undefined}
+          class="bg-surface-raised outline-line hover:bg-surface group flex flex-col p-8 no-underline outline transition-colors duration-300 lg:p-10"
+        >
+          <span class="eyebrow eyebrow-plain">{channel.title}</span>
+          <span class="font-display text-ink group-hover:text-accent-ink mt-4 text-2xl font-semibold break-words transition-colors duration-200 lg:text-3xl">
+            {channel.label}
+          </span>
+          <span class="text-ink-muted mt-4 leading-relaxed">{channel.body}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="border-line mt-14 grid gap-12 border-t pt-14 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <h3 class="text-h3">{content.socialTitle}</h3>
+      <p class="text-ink-muted mt-3 leading-relaxed">{content.socialBody}</p>
+      <ul class="mt-6 flex flex-wrap gap-3">
+        <li>
+          <a href={site.links.facebook} target="_blank" rel="noopener" class="btn btn-ghost">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href={site.links.instagram} target="_blank" rel="noopener" class="btn btn-ghost">
+            Instagram
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lg:col-span-7">
+      <h3 class="text-h3">{content.visitTitle}</h3>
+      <Prose body={content.visitBody} class="mt-3 text-base" />
+
+      <div class="border-line bg-surface-raised mt-7 border p-7 lg:p-8">
+        <p class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+          {strings.trainingTime(site.training.day[locale], site.training.start, site.training.end)}
+        </p>
+        <address class="text-ink mt-4 text-lg leading-relaxed not-italic">
+          {site.venue.name}<br />
+          {site.venue.street}<br />
+          {site.venue.postalCode}&nbsp;{site.venue.city}
+        </address>
+        <p class="text-ink-muted mt-5 text-sm leading-relaxed">{content.directions}</p>
+        <a href={site.venue.mapUrl} target="_blank" rel="noopener" class="btn btn-ghost mt-6">
+          {content.mapLink}
+        </a>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<div class="container-page pb-(--spacing-section)">
+  <Figure
+    image={sparringPair}
+    alt={alt.sparringPair}
+    sizes="100vw"
+    widths={[640, 960, 1280, 1600, 1800]}
+    aspect="aspect-[21/9]"
+    position="50% 35%"
+  />
+</div>
