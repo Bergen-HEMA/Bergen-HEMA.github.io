@@ -1,3 +1,4 @@
+import { site } from '../site';
 import type { SiteContent } from './types';
 
 /**
@@ -12,7 +13,7 @@ export const no: SiteContent = {
     home: {
       title: 'Bergen HEMA — historisk kampsport i moderne innpakning',
       description:
-        'Bergen HEMA er en av Norges fremste klubber innen historisk europeisk kampsport. Vi trener tysk langsverdfekting på Årstad VGS hver torsdag. Nybegynnere er velkomne — første trening er gratis.',
+        'Bergen HEMA er en av Norges fremste klubber innen historisk europeisk kampsport. Vi trener tysk langsverdfekting på Årstad VGS hver torsdag. Nye medlemmer tas inn i september og januar, og oppstarten er gratis.',
     },
     membership: {
       title: 'Trening og medlemskap',
@@ -22,7 +23,7 @@ export const no: SiteContent = {
     equipment: {
       title: 'Utstyr',
       description:
-        'Nybegynnere trenger bare treningstøy, innesko og vannflaske — vi stiller med sverd og beskyttelse. Her er guiden til fullt utstyr når du vil skaffe ditt eget.',
+        'Nybegynnere trenger bare treningstøy, innesko og vannflaske — vi stiller med sverd og beskyttelse. Her er utstyrskravene for nylon og stål når du vil skaffe ditt eget.',
     },
     groups: {
       title: 'Bedrift og grupper',
@@ -37,7 +38,7 @@ export const no: SiteContent = {
     contact: {
       title: 'Kontakt',
       description:
-        'Ta kontakt med Bergen HEMA på post@bergenhema.no, på Spond eller i sosiale medier. Vi trener på Årstad VGS i Fjøsangerveien 38 i Bergen.',
+        'Raskest svar får du på Instagram eller Facebook, men du kan også nå Bergen HEMA på post@bergenhema.no, på Spond eller på Discord. Vi trener på Årstad VGS i Fjøsangerveien 38 i Bergen.',
     },
   },
 
@@ -46,7 +47,7 @@ export const no: SiteContent = {
       eyebrow: 'Bergen · Siden 2014',
       title: 'Historisk kampsport i moderne innpakning',
       lead: 'Vi er en av Norges fremste klubber innen historisk europeisk kampsport, og trener tysk langsverdfekting fra senmiddelalderen og renessansen.',
-      primary: 'Prøv en gratis trening',
+      primary: 'Prøv gratis ved semesterstart',
       secondary: 'Hva er HEMA?',
     },
 
@@ -105,7 +106,7 @@ export const no: SiteContent = {
     start: {
       eyebrow: 'Slik kommer du i gang',
       title: 'Tre steg til første trening',
-      lead: 'Du kan møte opp uten påmelding, men vi setter pris på at du sier fra så vi vet at du kommer.',
+      lead: 'Vi tar inn nye medlemmer i september og fra januar til midten av februar. Hele oppstartsperioden er gratis.',
       steps: [
         {
           title: 'Meld deg på i Spond',
@@ -113,11 +114,11 @@ export const no: SiteContent = {
         },
         {
           title: 'Møt opp på torsdag',
-          body: 'Ta med treningstøy, innesko med lys såle og en vannflaske. Kom gjerne ti minutter før, så rekker vi å hilse og finne utstyr som passer.',
+          body: 'Ta med treningstøy, innesko med lys såle og en vannflaske. Kom gjerne ti minutter før den første treningen, så rekker vi å hilse og finne utstyr som passer.',
         },
         {
           title: 'Lån utstyr og bli med',
-          body: 'Du får låne sverd, maske og beskyttelse av klubben. Den første treningen er gratis — er du fortsatt gira etterpå, melder du deg inn.',
+          body: 'Du får låne sverd, maske og beskyttelse av klubben. Hele oppstartsperioden er gratis — er du fortsatt gira etterpå, melder du deg inn.',
         },
       ],
     },
@@ -126,6 +127,10 @@ export const no: SiteContent = {
       eyebrow: 'Ofte stilte spørsmål',
       title: 'Det folk lurer på',
       items: [
+        {
+          q: 'Når kan jeg begynne?',
+          a: 'Vi tar inn nye medlemmer to ganger i året, ved semesterstart: i september og fra januar til midten av februar. Hele denne perioden er gratis, og du betaler først hvis du vil fortsette etterpå. Trener du HEMA fra før, kan du begynne når som helst i året.',
+        },
         {
           q: 'Er det farlig?',
           a: 'Vi trener med stumpe treningssverd i stål, og bruker fektemaske, hansker og polstring når intensiteten går opp. Blåmerker forekommer, alvorlige skader gjør det svært sjelden. Instruktørene styrer intensiteten, og du bestemmer selv hvor hardt du vil gå ut.',
@@ -140,7 +145,7 @@ export const no: SiteContent = {
         },
         {
           q: 'Kan jeg bare møte opp?',
-          a: 'Ja. Vi setter pris på at du melder deg på i Spond først, men du er velkommen til å bare komme innom en torsdag.',
+          a: 'I oppstartsperioden kan du det — vi setter pris på at du melder deg på i Spond først, men du er velkommen til å bare komme innom en torsdag. Utenfor perioden venter du til neste oppstart, med mindre du trener HEMA fra før. Da tar du kontakt, og så finner vi ut av det.',
         },
         {
           q: 'Er dette det samme som LARP eller riddershow?',
@@ -155,7 +160,7 @@ export const no: SiteContent = {
 
     cta: {
       title: 'Vi ses på torsdag',
-      lead: 'Første trening er gratis, og du trenger ikke ta med annet enn treningstøy, innesko og en vannflaske.',
+      lead: 'Oppstarten er gratis, og du trenger ikke ta med annet enn treningstøy, innesko og en vannflaske.',
     },
   },
 
@@ -170,6 +175,18 @@ export const no: SiteContent = {
         'Bergen HEMA er åpen for alle over 18 år. Fra 16 til 18 år kan man trene med foresattes skriftlige samtykke.',
         'Du trenger ikke noen forkunnskaper eller spesialutstyr for å begynne å trene i Bergen HEMA.',
       ],
+    },
+
+    intake: {
+      title: 'Når kan jeg begynne?',
+      lead: 'Vi tar inn nye medlemmer ved semesterstart, to ganger i året:',
+      windows: [
+        { label: 'September', note: 'Høstsemesteret' },
+        { label: 'Januar til midten av februar', note: 'Vårsemesteret' },
+      ],
+      free: 'Hele oppstartsperioden er gratis. Vil du fortsette å trene etterpå, melder du deg inn og betaler kontingent.',
+      experienced:
+        'Trener du HEMA fra før? Da kan du begynne når som helst i året — send oss en e-post, eller stikk innom en torsdag.',
     },
 
     bring: {
@@ -191,24 +208,22 @@ export const no: SiteContent = {
       title: 'Treningstider',
       body: [
         'Fast trening er <strong>torsdager 17:00–19:00</strong>.',
-        'Open sparring og andre aktiviteter utenom faste treninger blir annonsert på Spond og på Discord-serveren til Bergen HEMA.',
+        `Open sparring og andre aktiviteter utenom faste treninger blir annonsert på Spond og på <a href="${site.links.discord}" target="_blank" rel="noopener">Discord-serveren</a> til Bergen HEMA.`,
       ],
     },
 
     fees: {
       title: 'Medlemskontingent',
-      lead: 'Alle som trener fast med Bergen HEMA må betale treningskontingent. Det kan gjøres enten for hvert semester eller for hvert år.',
+      lead: 'Oppstartsperioden er gratis. Vil du fortsette å trene etterpå, betaler du treningskontingent — enten for hvert semester eller for hele året.',
       rows: [
-        { label: 'Ett semester', amount: 800, note: 'Samme pris som nybegynnerkurset' },
-        { label: 'Ett år', amount: 1300, note: 'Inkluderer medlemsavgift' },
+        { label: 'Ett semester', amount: site.prices.semester, note: 'Vår eller høst' },
+        { label: 'Ett år', amount: site.prices.year, note: 'Inkluderer medlemsavgift' },
         {
           label: 'Støttemedlemskap',
-          amount: 100,
+          amount: site.prices.supporting,
           note: 'Kun medlemsavgift, for deg som ikke trener nå',
         },
       ],
-      rights:
-        'Som medlem har du rett til å delta og stemme ved Bergen HEMAs årsmøter. Støttemedlemskap gir et fullverdig medlemskap med stemmerett, for deg som ønsker å støtte klubben eller ikke har mulighet til å trene akkurat nå.',
       payment: {
         title: 'Betaling',
         body: [
@@ -234,85 +249,49 @@ export const no: SiteContent = {
       ],
     },
 
-    fullTitle: 'Fullt utstyr',
+    fullTitle: 'Utstyrskrav',
     fullLead:
-      'Dette er utstyret du trenger for å sparre i full intensitet og delta i turneringer. Lenkene går til leverandører klubbens medlemmer har god erfaring med.',
+      'Hva du må ha selv avhenger av hva du fekter med. Nylon krever lite, stål krever fullt oppsett. Under er kravene i kortform — den fullstendige listen med krav, anbefalinger og leverandører holdes oppdatert i klubbens utstyrsdokument.',
 
-    groups: [
+    requirements: [
       {
-        title: 'Hode og hals',
-        items: [
-          {
-            title: 'Maske',
-            body: 'De fleste solide FIE-sertifiserte fektemasker er gode nok. Vi anbefaler alle å kjøpe en 1600N maske, som gir solid beskyttelse under sparring og samtidig er godkjent i turneringene. Noen alternativer er <a href="https://allstar.de" target="_blank" rel="noopener">Allstar</a>, <a href="https://leonpaul.com/" target="_blank" rel="noopener">Leon Paul</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a> og <a href="https://www.afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Bakhodebeskyttelse',
-            body: 'Her er det flere merker som er gode, for eksempel <a href="https://allstar.de/" target="_blank" rel="noopener">Allstar</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a>, <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a> og <a href="https://afinternationalsporting.com/" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Halsbeskyttelse',
-            body: 'Flere gode merker, for eksempel <a href="https://allstar.de" target="_blank" rel="noopener">Allstar</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a> og <a href="https://afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
+        title: 'Nylon',
+        lead: 'For å fekte med nylonsverd i Bergen HEMA trenger du følgende.',
+        required: [
+          'Fektemaske',
+          'Hansker — Red Dragon eller tilsvarende/bedre beskyttelse',
+          'Susp (for menn)',
         ],
+        recommended: ['Plastron (for kvinner)'],
       },
       {
-        title: 'Hender',
-        items: [
-          {
-            title: 'Hansker',
-            body: 'Noen av de beste hanskene på markedet er uten tvil <a href="https://sparringglove.com/" target="_blank" rel="noopener">Sparring Gloves</a> og <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES Lobster Gloves</a>. De tilbyr den beste balansen mellom bevegelighet og beskyttelse, og har veldig god kundeservice.',
-          },
+        title: 'Stål',
+        lead: 'For å fekte med stål kreves fullt oppsett. Stålhansker er ikke tillatt for sparring i klubben.',
+        required: [
+          'Fektemaske med overlay — overlayen må dekke bakhodet',
+          'Halsbeskytter',
+          'Hansker egnet for langsverd',
+          'Fektejakke med tilstrekkelig padding, godt overlapp foran og uten hull under armene',
+          'Kne- og albuebeskyttere',
+          'Susp (for menn)',
         ],
-      },
-      {
-        title: 'Kropp',
-        items: [
-          {
-            title: 'Jakke',
-            body: 'Et veldig godt alternativ er Axel Pettersson-jakken fra polske <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a>. Standardstørrelsene er greie for de fleste, men man kan også få den målsydd dersom man ønsker det.',
-          },
-          {
-            title: 'Kne- og albuebeskyttelse',
-            body: 'Sett med gode kne- og albuebeskyttere kan skaffes i sportsbutikk, MC-butikk eller i militært utsalg.',
-          },
-          {
-            title: 'Leggbeskyttere',
-            body: 'Kan kjøpes i vanlig sportsbutikk.',
-          },
-          {
-            title: 'Susp (for menn)',
-            body: 'Kan kjøpes i vanlig sportsbutikk.',
-          },
-        ],
-      },
-      {
-        title: 'Sverd',
-        items: [
-          {
-            title: 'Treningssverd',
-            body: 'Treningssverdene fra <a href="https://regenyei.com/" target="_blank" rel="noopener">Peter Regenyei</a> i Ungarn er veldig gode og gir mye for pengene. En annen favoritt i klubben er sverdene fra <a href="https://sigiforge.com/" target="_blank" rel="noopener">SIGI Forge</a>.',
-          },
-        ],
-      },
-      {
-        title: 'Klær og sko',
-        items: [
-          {
-            title: 'Sko',
-            body: 'Bør ha flat eller delvis flat såle. Sko for innendørs fotball er ofte et godt alternativ.',
-          },
-          {
-            title: 'Shorts og bukser',
-            body: 'Keeperbukser er gode, og fås kjøpt i vanlig sportsbutikk. Ellers er det noen som lager bukser spesielt for HEMA, som <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a>, <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a> og <a href="https://afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Sokker',
-            body: 'Fotballstrømper fås kjøpt i vanlig sportsbutikk.',
-          },
+        recommended: [
+          'Plastron (for kvinner)',
+          'Underarms- og leggbeskyttere',
+          'Fektebukse',
+          '350N eller mer på jakke og bukse — også vanlig turneringskrav',
         ],
       },
     ],
+
+    doc: {
+      title: 'Utstyrsdokumentet',
+      body: [
+        'Klubben holder et eget dokument med alle utstyrskrav, konkrete anbefalinger for maske, hansker, jakke, bukse og beskyttere, og hva vi selv mener om de ulike modellene på markedet.',
+        'Der finner du også hvilke leverandører vi har klubbrabatt hos — The Knight Shop, Faits’d armes og SPES.',
+      ],
+      linkLabel: 'Åpne utstyrsdokumentet',
+    },
 
     outro:
       'Usikker på hva du bør kjøpe først? Spør instruktørene på trening — de har som regel sterke meninger, og du får prøve andres utstyr før du bestemmer deg.',
@@ -382,17 +361,23 @@ export const no: SiteContent = {
   contact: {
     eyebrow: 'Kontakt',
     title: 'Ta kontakt',
-    lead: 'Har du spørsmål om medlemskap, trening, arrangementer eller noe annet? Vi svarer gjerne.',
+    lead: 'Har du spørsmål om medlemskap, trening, arrangementer eller noe annet? Raskest og enklest svar får du ved å sende oss en melding på Instagram eller Facebook, men du er like velkommen til å skrive en e-post.',
 
     emailTitle: 'E-post',
-    emailBody: 'Den sikreste måten å nå oss på. Vi svarer normalt innen et par dager.',
+    emailBody:
+      'Foretrekker du e-post, går det helt fint. Vi svarer normalt innen et par dager.',
 
     spondTitle: 'Spond',
     spondBody:
       'Klubben bruker Spond til treningsoppmøte, beskjeder og betaling. Er du på vei til din første trening, er det her du melder deg på.',
 
+    discordTitle: 'Discord',
+    discordBody:
+      'Klubben bruker Discord til intern kommunikasjon — planlegging, open sparring og prat mellom treningene. Alle medlemmer er velkomne inn.',
+
     socialTitle: 'Sosiale medier',
-    socialBody: 'Siste nytt, bilder fra trening og turneringer legges ut her.',
+    socialBody:
+      'Den raskeste veien til svar: send oss en melding på Instagram eller Facebook. Her legger vi også ut siste nytt og bilder fra trening og turneringer.',
 
     visitTitle: 'Kom innom',
     visitBody: [

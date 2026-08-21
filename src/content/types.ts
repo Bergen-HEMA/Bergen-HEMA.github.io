@@ -37,9 +37,17 @@ export interface PriceRow {
   note?: string;
 }
 
-export interface GearGroup {
+/**
+ * What the club requires you to own before sparring, split by what you spar
+ * with. The authoritative version lives in the club's equipment document —
+ * this is the summary, so keep it short.
+ */
+export interface GearRequirements {
+  /** 'Nylon' / 'Stål' */
   title: string;
-  items: Point[];
+  lead: string;
+  required: string[];
+  recommended: string[];
 }
 
 export interface SiteContent {
@@ -73,6 +81,20 @@ export interface SiteContent {
     title: string;
     lead: string;
     who: Titled;
+    /**
+     * The club takes beginners in twice a year and that period costs nothing.
+     * Both facts are stated here and in the home-page FAQ, and nowhere else —
+     * naming the months in every CTA ages badly and reads as clutter.
+     */
+    intake: {
+      title: string;
+      lead: string;
+      /** `label` is the period ("September"), `note` the semester it opens. */
+      windows: { label: string; note: string }[];
+      free: string;
+      /** Already train HEMA? The intake windows do not apply to you. */
+      experienced: string;
+    };
     bring: { title: string; lead: string; items: string[]; note: string };
     venue: Titled;
     times: Titled;
@@ -80,7 +102,6 @@ export interface SiteContent {
       title: string;
       lead: string;
       rows: PriceRow[];
-      rights: string;
       payment: Titled;
       reference: string;
     };
@@ -93,7 +114,9 @@ export interface SiteContent {
     beginner: Titled;
     fullTitle: string;
     fullLead: string;
-    groups: GearGroup[];
+    requirements: GearRequirements[];
+    /** Link out to the maintained equipment document. */
+    doc: Titled & { linkLabel: string };
     outro: string;
   };
 
@@ -124,6 +147,8 @@ export interface SiteContent {
     emailBody: string;
     spondTitle: string;
     spondBody: string;
+    discordTitle: string;
+    discordBody: string;
     socialTitle: string;
     socialBody: string;
     visitTitle: string;

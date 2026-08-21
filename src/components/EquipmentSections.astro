@@ -4,7 +4,8 @@ import Prose from './Prose.astro';
 import Figure from './Figure.astro';
 import type { SiteContent } from '../content/types';
 import { getAlt } from '../content/alt';
-import type { Locale } from '../site';
+import { site, type Locale } from '../site';
+import { t } from '../i18n/ui';
 
 import swordRedGrip from '../assets/photos/sword-red-grip.jpg';
 import glovesBind from '../assets/photos/gloves-bind.jpg';
@@ -16,6 +17,7 @@ interface Props {
 
 const { content, locale } = Astro.props;
 const alt = getAlt(locale);
+const strings = t(locale);
 ---
 
 {/* ---- What beginners actually need -------------------------------------- */}
@@ -47,22 +49,53 @@ const alt = getAlt(locale);
 
   <div class="mt-14 space-y-14">
     {
-      content.groups.map((group) => (
+      content.requirements.map((group) => (
         <div class="border-line grid gap-6 border-t pt-8 lg:grid-cols-12 lg:gap-16">
           <h3 class="text-ink lg:col-span-3 text-[0.75rem] font-semibold tracking-[0.2em] uppercase">
             {group.title}
           </h3>
-          <dl class="lg:col-span-9 space-y-7">
-            {group.items.map((item) => (
+          <div class="lg:col-span-9">
+            <p class="text-ink-muted max-w-[64ch] leading-relaxed">{group.lead}</p>
+
+            <div class="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-12">
               <div>
-                <dt class="font-display text-ink text-xl font-semibold">{item.title}</dt>
-                <dd class="rich mt-2 max-w-[64ch] text-base" set:html={item.body} />
+                <p class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+                  {strings.gearRequired}
+                </p>
+                <ul class="border-line mt-4 space-y-3 border-t">
+                  {group.required.map((item) => (
+                    <li class="border-line text-ink border-b pb-3 text-base leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </dl>
+              <div>
+                <p class="text-ink-faint text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+                  {strings.gearRecommended}
+                </p>
+                <ul class="border-line mt-4 space-y-3 border-t">
+                  {group.recommended.map((item) => (
+                    <li class="border-line text-ink-muted border-b pb-3 text-base leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       ))
     }
+  </div>
+
+  {/* ---- The maintained document this page summarises --------------------- */}
+  <div class="border-line bg-surface mt-14 border p-7 lg:p-8">
+    <h3 class="text-h3">{content.doc.title}</h3>
+    <Prose body={content.doc.body} class="mt-4 max-w-[58ch] text-base" />
+    <a href={site.links.equipmentDoc} target="_blank" rel="noopener" class="btn btn-ghost mt-7">
+      {content.doc.linkLabel}
+    </a>
   </div>
 
   <p class="border-accent text-ink-muted mt-14 max-w-[62ch] border-l-2 py-1 pl-5 leading-relaxed">

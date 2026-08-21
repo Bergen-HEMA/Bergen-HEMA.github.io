@@ -53,11 +53,16 @@ type UiStrings = {
   };
   /** Renders "Torsdag 17:00–19:00" and similar. */
   trainingTime: (day: string, start: string, end: string) => string;
-  freeFirst: string;
-  perSemester: string;
-  perYear: string;
-  supportingMember: string;
+  /**
+   * The club takes beginners in twice a year and that period is free. Kept
+   * evergreen rather than naming the months, so the ticker and the CTAs never
+   * go stale — the dates themselves live on the membership page and in the FAQ.
+   */
+  freeIntake: string;
   currency: (amount: number) => string;
+  /** Labels the two halves of an equipment requirement list. */
+  gearRequired: string;
+  gearRecommended: string;
   externalLink: string;
   backToTop: string;
   showOnMap: string;
@@ -91,7 +96,7 @@ export const ui: Record<Locale, UiStrings> = {
     navMenu: 'Meny',
     navClose: 'Lukk meny',
     joinCta: 'Bli medlem',
-    tryCta: 'Prøv en gratis trening',
+    tryCta: 'Prøv gratis ved semesterstart',
     emailUs: 'Send oss en e-post',
     footer: {
       trainWithUs: 'Tren med oss',
@@ -101,11 +106,10 @@ export const ui: Record<Locale, UiStrings> = {
       builtNote: 'Historisk europeisk kampsport i Bergen siden 2014.',
     },
     trainingTime: (day, start, end) => `${day} ${start}–${end}`,
-    freeFirst: 'Første trening er gratis',
-    perSemester: 'Ett semester',
-    perYear: 'Ett år',
-    supportingMember: 'Støttemedlemskap',
+    freeIntake: 'Gratis ved semesterstart',
     currency: (n) => `${n} kr`,
+    gearRequired: 'Påkrevd',
+    gearRecommended: 'Anbefalt',
     externalLink: 'åpnes i nytt vindu',
     backToTop: 'Til toppen',
     showOnMap: 'Vis i kart',
@@ -137,7 +141,7 @@ export const ui: Record<Locale, UiStrings> = {
     navMenu: 'Menu',
     navClose: 'Close menu',
     joinCta: 'Join us',
-    tryCta: 'Try a free session',
+    tryCta: 'Try free at the start of term',
     emailUs: 'Send us an email',
     footer: {
       trainWithUs: 'Train with us',
@@ -147,11 +151,10 @@ export const ui: Record<Locale, UiStrings> = {
       builtNote: 'Historical European martial arts in Bergen since 2014.',
     },
     trainingTime: (day, start, end) => `${day} ${start}–${end}`,
-    freeFirst: 'Your first session is free',
-    perSemester: 'One semester',
-    perYear: 'One year',
-    supportingMember: 'Supporting membership',
+    freeIntake: 'Free at the start of each semester',
     currency: (n) => `NOK ${n}`,
+    gearRequired: 'Required',
+    gearRecommended: 'Recommended',
     externalLink: 'opens in a new window',
     backToTop: 'Back to top',
     showOnMap: 'Show on map',

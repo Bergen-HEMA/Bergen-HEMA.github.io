@@ -1,3 +1,4 @@
+import { site } from '../site';
 import type { SiteContent } from './types';
 
 /**
@@ -14,7 +15,7 @@ export const en: SiteContent = {
     home: {
       title: 'Bergen HEMA — historical martial arts, trained the modern way',
       description:
-        'Bergen HEMA is one of Norway’s leading historical European martial arts clubs. We train German longsword at Årstad VGS every Thursday. Beginners welcome — your first session is free.',
+        'Bergen HEMA is one of Norway’s leading historical European martial arts clubs. We train German longsword at Årstad VGS every Thursday. We take in new members in September and January, and the intake period is free.',
     },
     membership: {
       title: 'Training and membership',
@@ -24,7 +25,7 @@ export const en: SiteContent = {
     equipment: {
       title: 'Equipment',
       description:
-        'Beginners only need sportswear, indoor shoes and a water bottle — we provide swords and protective gear. Here is the guide to a full kit for when you want your own.',
+        'Beginners only need sportswear, indoor shoes and a water bottle — we provide swords and protective gear. Here are the equipment requirements for nylon and steel when you want your own.',
     },
     groups: {
       title: 'Companies and groups',
@@ -39,7 +40,7 @@ export const en: SiteContent = {
     contact: {
       title: 'Contact',
       description:
-        'Get in touch with Bergen HEMA at post@bergenhema.no, on Spond or on social media. We train at Årstad VGS, Fjøsangerveien 38 in Bergen.',
+        'The quickest reply comes via Instagram or Facebook, but you can also reach Bergen HEMA at post@bergenhema.no, on Spond or on Discord. We train at Årstad VGS, Fjøsangerveien 38 in Bergen.',
     },
   },
 
@@ -48,7 +49,7 @@ export const en: SiteContent = {
       eyebrow: 'Bergen · Since 2014',
       title: 'Historical martial arts, trained the modern way',
       lead: 'We are one of Norway’s leading historical European martial arts clubs, training the German longsword of the late medieval period and the Renaissance.',
-      primary: 'Try a free session',
+      primary: 'Try free at the start of term',
       secondary: 'What is HEMA?',
     },
 
@@ -107,7 +108,7 @@ export const en: SiteContent = {
     start: {
       eyebrow: 'Getting started',
       title: 'Three steps to your first session',
-      lead: 'You are welcome to simply turn up, but we appreciate a heads-up so we know to expect you.',
+      lead: 'We take in new members in September and from January to mid-February. The whole intake period is free.',
       steps: [
         {
           title: 'Sign up on Spond',
@@ -115,11 +116,11 @@ export const en: SiteContent = {
         },
         {
           title: 'Come along on Thursday',
-          body: 'Bring sportswear, indoor shoes with a non-marking sole and a water bottle. Arriving ten minutes early gives us time to say hello and find kit that fits.',
+          body: 'Bring sportswear, indoor shoes with a non-marking sole and a water bottle. Arriving ten minutes early for your first session gives us time to say hello and find kit that fits.',
         },
         {
           title: 'Borrow gear and join in',
-          body: 'The club lends you a sword, a mask and protective equipment. Your first session is free — if you are still keen afterwards, you sign up as a member.',
+          body: 'The club lends you a sword, a mask and protective equipment. The whole intake period is free — if you are still keen afterwards, you sign up as a member.',
         },
       ],
     },
@@ -128,6 +129,10 @@ export const en: SiteContent = {
       eyebrow: 'Frequently asked',
       title: 'What people want to know',
       items: [
+        {
+          q: 'When can I start?',
+          a: 'We take in new members twice a year, at the start of each semester: in September, and from January to mid-February. That whole period is free, and you only pay if you want to carry on afterwards. If you already train HEMA, you can start at any time of year.',
+        },
         {
           q: 'Is it dangerous?',
           a: 'We train with blunt steel training swords and wear fencing masks, gloves and padding as the intensity goes up. Bruises happen; serious injuries very rarely do. Instructors control the intensity, and you decide how hard you want to go.',
@@ -142,7 +147,7 @@ export const en: SiteContent = {
         },
         {
           q: 'Can I just turn up?',
-          a: 'Yes. We prefer that you register on Spond first, but you are welcome to simply drop by on a Thursday.',
+          a: 'During an intake period, yes — we prefer that you register on Spond first, but you are welcome to simply drop by on a Thursday. Outside those periods, wait for the next intake, unless you already train HEMA. In that case get in touch and we will sort something out.',
         },
         {
           q: 'Is this the same as LARP or a knight show?',
@@ -161,7 +166,7 @@ export const en: SiteContent = {
 
     cta: {
       title: 'See you on Thursday',
-      lead: 'Your first session is free, and you need nothing but sportswear, indoor shoes and a water bottle.',
+      lead: 'The intake period is free, and you need nothing but sportswear, indoor shoes and a water bottle.',
     },
   },
 
@@ -176,6 +181,18 @@ export const en: SiteContent = {
         'Bergen HEMA is open to everyone over 18. From 16 to 18 you can train with written consent from a parent or guardian.',
         'You need no previous experience and no special equipment to start training with Bergen HEMA.',
       ],
+    },
+
+    intake: {
+      title: 'When can I start?',
+      lead: 'We take in new members at the start of each semester, twice a year:',
+      windows: [
+        { label: 'September', note: 'Autumn semester' },
+        { label: 'January to mid-February', note: 'Spring semester' },
+      ],
+      free: 'The whole intake period is free. If you want to keep training afterwards, you sign up as a member and pay the training fee.',
+      experienced:
+        'Already train HEMA? Then you can start at any time of year — send us an email, or drop by on a Thursday.',
     },
 
     bring: {
@@ -197,24 +214,22 @@ export const en: SiteContent = {
       title: 'Training times',
       body: [
         'Regular training is <strong>Thursdays, 17:00–19:00</strong>.',
-        'Open sparring and other activities outside regular training are announced on Spond and on the Bergen HEMA Discord server.',
+        `Open sparring and other activities outside regular training are announced on Spond and on the <a href="${site.links.discord}" target="_blank" rel="noopener">Bergen HEMA Discord server</a>.`,
       ],
     },
 
     fees: {
       title: 'Membership fees',
-      lead: 'Everyone who trains regularly with Bergen HEMA pays a training fee. You can pay per semester or per year.',
+      lead: 'The intake period is free. If you want to keep training afterwards, you pay a training fee — either per semester or for the whole year.',
       rows: [
-        { label: 'One semester', amount: 800, note: 'Same price as the beginners’ course' },
-        { label: 'One year', amount: 1300, note: 'Membership fee included' },
+        { label: 'One semester', amount: site.prices.semester, note: 'Spring or autumn' },
+        { label: 'One year', amount: site.prices.year, note: 'Membership fee included' },
         {
           label: 'Supporting membership',
-          amount: 100,
+          amount: site.prices.supporting,
           note: 'Membership fee only, if you are not training right now',
         },
       ],
-      rights:
-        'As a member you have the right to attend and vote at Bergen HEMA’s annual general meeting. A supporting membership is a full membership with voting rights, for those who want to support the club or cannot train at the moment.',
       payment: {
         title: 'Payment',
         body: [
@@ -240,85 +255,50 @@ export const en: SiteContent = {
       ],
     },
 
-    fullTitle: 'A full kit',
+    fullTitle: 'Equipment requirements',
     fullLead:
-      'This is what you need for full-intensity sparring and for competing in tournaments. The links go to suppliers our members have had good experiences with.',
+      'What you need to own depends on what you spar with. Nylon asks very little of you; steel needs a full kit. Below is the short version — the complete list of requirements, recommendations and suppliers is kept up to date in the club’s equipment document.',
 
-    groups: [
+    requirements: [
       {
-        title: 'Head and neck',
-        items: [
-          {
-            title: 'Mask',
-            body: 'Most solid FIE-certified fencing masks are good enough. We recommend buying a 1600N mask, which gives solid protection while sparring and is accepted at tournaments. Options include <a href="https://allstar.de" target="_blank" rel="noopener">Allstar</a>, <a href="https://leonpaul.com/" target="_blank" rel="noopener">Leon Paul</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a> and <a href="https://www.afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Back-of-head protection',
-            body: 'Several good brands, for instance <a href="https://allstar.de/" target="_blank" rel="noopener">Allstar</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a>, <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a> and <a href="https://afinternationalsporting.com/" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Throat protection',
-            body: 'Several good brands, for instance <a href="https://allstar.de" target="_blank" rel="noopener">Allstar</a>, <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a> and <a href="https://afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
+        title: 'Nylon',
+        lead: 'To fence with nylon swords at Bergen HEMA you need the following.',
+        required: [
+          'Fencing mask',
+          'Gloves — Red Dragon or equivalent/better protection',
+          'Groin protection (for men)',
         ],
+        recommended: ['Plastron (for women)'],
       },
       {
-        title: 'Hands',
-        items: [
-          {
-            title: 'Gloves',
-            body: 'Some of the best gloves on the market are without doubt <a href="https://sparringglove.com/" target="_blank" rel="noopener">Sparring Gloves</a> and <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES Lobster Gloves</a>. They strike the best balance between mobility and protection, and both have very good customer service.',
-          },
+        title: 'Steel',
+        lead: 'Fencing with steel needs a full kit. Steel gauntlets are not permitted for sparring within the club.',
+        required: [
+          'Fencing mask with an overlay — the overlay must cover the back of the head',
+          'Neck protector',
+          'Gloves suitable for longsword',
+          'Fencing jacket with adequate padding, enough overlap at the front and no gaps under the arms',
+          'Knee and elbow protectors',
+          'Groin protection (for men)',
         ],
-      },
-      {
-        title: 'Body',
-        items: [
-          {
-            title: 'Jacket',
-            body: 'A very good option is the Axel Pettersson jacket from Polish maker <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a>. The standard sizes fit most people, but you can also have one made to measure.',
-          },
-          {
-            title: 'Knee and elbow protection',
-            body: 'Good knee and elbow pads can be found in sports shops, motorcycle shops or army surplus stores.',
-          },
-          {
-            title: 'Shin guards',
-            body: 'Available from any ordinary sports shop.',
-          },
-          {
-            title: 'Groin protection',
-            body: 'Available from any ordinary sports shop.',
-          },
-        ],
-      },
-      {
-        title: 'Swords',
-        items: [
-          {
-            title: 'Training swords',
-            body: 'The training swords from <a href="https://regenyei.com/" target="_blank" rel="noopener">Peter Regenyei</a> in Hungary are very good and offer a lot for the money. Another favourite in the club is <a href="https://sigiforge.com/" target="_blank" rel="noopener">SIGI Forge</a>.',
-          },
-        ],
-      },
-      {
-        title: 'Clothing and shoes',
-        items: [
-          {
-            title: 'Shoes',
-            body: 'Should have a flat or partly flat sole. Indoor football shoes are often a good option.',
-          },
-          {
-            title: 'Shorts and trousers',
-            body: 'Goalkeeper trousers work well and are sold in any sports shop. Some makers produce trousers specifically for HEMA, such as <a href="https://pbthistoricalfencing.com/" target="_blank" rel="noopener">PBT Historical Fencing</a>, <a href="https://histfenc.eu/en/" target="_blank" rel="noopener">SPES</a> and <a href="https://afinternationalsporting.com" target="_blank" rel="noopener">Absolute Force</a>.',
-          },
-          {
-            title: 'Socks',
-            body: 'Football socks from any ordinary sports shop.',
-          },
+        recommended: [
+          'Plastron (for women)',
+          'Forearm and shin protectors',
+          'Fencing trousers',
+          '350N or higher on jacket and trousers — also the usual tournament requirement',
         ],
       },
     ],
+
+    doc: {
+      title: 'The equipment document',
+      body: [
+        'The club keeps a separate document with every equipment requirement, concrete recommendations for masks, gloves, jackets, trousers and protectors, and our own verdicts on the models available today.',
+        'It also lists the suppliers we hold a club discount with — The Knight Shop, Faits’d armes and SPES.',
+        'The document is written in Norwegian, with an English translation further down the page.',
+      ],
+      linkLabel: 'Open the equipment document',
+    },
 
     outro:
       'Not sure what to buy first? Ask the instructors at training — they tend to have strong opinions, and you can try other people’s gear before committing.',
@@ -388,17 +368,22 @@ export const en: SiteContent = {
   contact: {
     eyebrow: 'Contact',
     title: 'Get in touch',
-    lead: 'Questions about membership, training, events or anything else? We are happy to help.',
+    lead: 'Questions about membership, training, events or anything else? The quickest and easiest way to reach us is a message on Instagram or Facebook, but you are just as welcome to send an email.',
 
     emailTitle: 'Email',
-    emailBody: 'The surest way to reach us. We normally reply within a couple of days.',
+    emailBody: 'If you would rather write an email, that works too. We normally reply within a couple of days.',
 
     spondTitle: 'Spond',
     spondBody:
       'The club uses Spond for attendance, announcements and payments. If you are heading to your first session, this is where you sign up.',
 
+    discordTitle: 'Discord',
+    discordBody:
+      'The club uses Discord for internal communication — planning, open sparring and chat between sessions. All members are welcome to join.',
+
     socialTitle: 'Social media',
-    socialBody: 'News, and photos from training and tournaments.',
+    socialBody:
+      'The quickest route to an answer: send us a message on Instagram or Facebook. We also post news and photos from training and tournaments here.',
 
     visitTitle: 'Come and visit',
     visitBody: [

@@ -37,9 +37,10 @@ export const site = {
     vipps: '621208',
   },
 
+  /** Referenced from both locales' price tables, so a change is a one-line edit. */
   prices: {
-    semester: 800,
-    year: 1300,
+    semester: 1000,
+    year: 1600,
     supporting: 100,
   },
 
@@ -49,7 +50,13 @@ export const site = {
     // which Facebook now redirects to this vanity URL.
     facebook: 'https://www.facebook.com/BergenHEMA',
     instagram: 'https://www.instagram.com/bergenhema/',
+    // Must be a never-expiring, unlimited-use invite. A default Discord invite
+    // dies after seven days and leaves a dead link on a public page.
+    discord: 'https://discord.gg/GVMhCPtgy',
     bylaws: '/bergen-hema-vedtekter.pdf',
+    /** Utstyrskrav og -anbefalinger — maintained by the club, not in this repo. */
+    equipmentDoc:
+      'https://docs.google.com/document/d/1IJYzNdhvcsB1GFUg5UngjeJliC-rL_QOFzUDF6YBlVo/edit?usp=sharing',
   },
 
   /** Elected at the most recent annual general meeting. */
@@ -58,7 +65,7 @@ export const site = {
     { name: 'Þorsteinn Thorarensen', role: { no: 'Nestleder og sekretær', en: 'Deputy chair and secretary' } },
     { name: 'Peter Petia', role: { no: 'Styremedlem, sosiale medier', en: 'Board member, social media' } },
     { name: 'Lars Sverkeli', role: { no: 'Styremedlem', en: 'Board member' } },
-    { name: 'Håkon Bergsnes', role: { no: 'Styremedlem', en: 'Board member' } },
+    { name: 'Evelynn Guercini', role: { no: 'Styremedlem', en: 'Board member' } },
     { name: 'Thomas Sandvaag', role: { no: 'Varamedlem', en: 'Deputy board member' } },
   ],
 

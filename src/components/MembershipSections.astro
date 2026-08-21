@@ -21,6 +21,46 @@ const alt = getAlt(locale);
 const strings = t(locale);
 ---
 
+{/* ---- When you can start ------------------------------------------------ */}
+{/*
+  First band on the page on purpose: intake is twice a year, so "when" is the
+  fact a newcomer needs before anything about kit, the venue or the price.
+*/}
+<Section tone="raised" labelledby="intake-title">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow">{strings.joinCta}</p>
+      <h2 id="intake-title" class="text-h2 mt-5">{content.intake.title}</h2>
+      <p class="text-ink-muted mt-6 leading-relaxed">{content.intake.lead}</p>
+    </div>
+
+    <div class="lg:col-span-8">
+      <ul class="grid gap-px sm:grid-cols-2">
+        {
+          content.intake.windows.map((window) => (
+            <li class="bg-surface outline-line flex flex-col gap-2 p-8 outline lg:p-10">
+              <span class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+                {window.note}
+              </span>
+              <span class="font-display text-ink text-3xl leading-tight font-semibold text-balance">
+                {window.label}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="border-accent text-ink mt-8 max-w-[62ch] border-l-2 py-1 pl-5 leading-relaxed">
+        {content.intake.free}
+      </p>
+
+      <p class="text-ink-faint border-line mt-8 max-w-[62ch] border-t pt-6 text-sm leading-relaxed">
+        {content.intake.experienced}
+      </p>
+    </div>
+  </div>
+</Section>
+
 {/* ---- Who can train, and what to bring ---------------------------------- */}
 <Section labelledby="who-title">
   <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -120,8 +160,6 @@ const strings = t(locale);
 
     <div class="lg:col-span-8">
       <PriceTable rows={content.fees.rows} locale={locale} />
-
-      <p class="text-ink-muted mt-8 max-w-[62ch] leading-relaxed">{content.fees.rights}</p>
 
       <div class="border-line mt-10 border-t pt-10">
         <h3 class="text-h3">{content.fees.payment.title}</h3>

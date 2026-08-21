@@ -33,6 +33,13 @@ const channels = [
     label: 'spond.com',
     external: true,
   },
+  {
+    title: content.discordTitle,
+    body: content.discordBody,
+    href: site.links.discord,
+    label: 'discord.gg',
+    external: true,
+  },
 ];
 ---
 
@@ -40,7 +47,7 @@ const channels = [
 <Section labelledby="channels-title">
   <h2 id="channels-title" class="sr-only">{content.title}</h2>
 
-  <div class="grid gap-px md:grid-cols-2">
+  <div class="grid gap-px md:grid-cols-2 lg:grid-cols-3">
     {
       channels.map((channel) => (
         <a
