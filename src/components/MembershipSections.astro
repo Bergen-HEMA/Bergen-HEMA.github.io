@@ -134,16 +134,20 @@ const strings = t(locale);
 
     <div>
       <h2 class="text-h2">{content.times.title}</h2>
-      <div
-        class="border-line bg-surface mt-7 flex flex-col gap-2 border p-8 lg:p-10"
-      >
-        <span class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
-          {site.training.day[locale]}
-        </span>
-        <span class="font-display text-ink text-5xl leading-none font-semibold tabular-nums">
-          {site.training.start}<span class="text-ink-faint">–</span>{site.training.end}
-        </span>
-      </div>
+      <ul class="border-line bg-surface mt-7 grid gap-px border sm:grid-cols-2">
+        {
+          site.training.map((session) => (
+            <li class="flex flex-col gap-2 p-8 lg:p-10">
+              <span class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+                {session.day[locale]}
+              </span>
+              <span class="font-display text-ink text-5xl leading-none font-semibold tabular-nums">
+                {session.start}<span class="text-ink-faint">–</span>{session.end}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
       <Prose body={content.times.body} class="mt-7 text-base" />
     </div>
   </div>
