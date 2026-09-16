@@ -1,5 +1,5 @@
 ---
-import { site, type Locale } from '../site';
+import { formatTrainingTimes, site, type Locale } from '../site';
 import { path, t } from '../i18n/ui';
 
 interface Props {
@@ -11,7 +11,7 @@ const strings = t(locale);
 
 // The single most useful thing on the site: when and where to turn up.
 const facts = [
-  strings.trainingTime(site.training.day[locale], site.training.start, site.training.end),
+  formatTrainingTimes(locale, strings.trainingTime).join(' · '),
   site.venue.name,
   strings.freeIntake,
 ];

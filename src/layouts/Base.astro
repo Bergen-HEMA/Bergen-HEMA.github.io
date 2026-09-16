@@ -50,14 +50,12 @@ const organisation = {
     latitude: site.venue.latitude,
     longitude: site.venue.longitude,
   },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: site.training.schemaDay,
-      opens: site.training.start,
-      closes: site.training.end,
-    },
-  ],
+  openingHoursSpecification: site.training.map((session) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: session.schemaDay,
+    opens: session.start,
+    closes: session.end,
+  })),
   sameAs: [site.links.facebook, site.links.instagram],
 };
 ---

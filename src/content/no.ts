@@ -207,7 +207,7 @@ export const no: SiteContent = {
     times: {
       title: 'Treningstider',
       body: [
-        'Fast trening er <strong>torsdager 17:00–19:00</strong>.',
+        'Fast trening er <strong>tirsdager 19:00–21:00</strong> og <strong>torsdager 17:00–19:00</strong>.',
         `Open sparring og andre aktiviteter utenom faste treninger blir annonsert på Spond og på <a href="${site.links.discord}" target="_blank" rel="noopener">Discord-serveren</a> til Bergen HEMA.`,
       ],
     },

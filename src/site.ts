@@ -1,8 +1,10 @@
+export type Locale = 'no' | 'en';
+
 /**
  * Facts about the club that are identical in every language: addresses,
- * account numbers, external links. Keeping them here means a change to the
- * training time or the Spond invite is a one-line edit, not a search across
- * two locales' worth of copy.
+ * account numbers, external links. Keeping them here means schedule changes or
+ * a new Spond invite are updated in one place, not searched across two
+ * locales' worth of copy.
  */
 export const site = {
   url: 'https://bergenhema.no',
@@ -11,14 +13,24 @@ export const site = {
 
   email: 'post@bergenhema.no',
 
-  training: {
-    day: { no: 'Torsdag', en: 'Thursday' },
-    /** 24h, used both for display and for the JSON-LD opening hours. */
-    start: '17:00',
-    end: '19:00',
-    /** schema.org DayOfWeek */
-    schemaDay: 'https://schema.org/Thursday',
-  },
+  training: [
+    {
+      day: { no: 'Tirsdag', en: 'Tuesday' },
+      /** 24h, used both for display and for the JSON-LD opening hours. */
+      start: '19:00',
+      end: '21:00',
+      /** schema.org DayOfWeek */
+      schemaDay: 'https://schema.org/Tuesday',
+    },
+    {
+      day: { no: 'Torsdag', en: 'Thursday' },
+      /** 24h, used both for display and for the JSON-LD opening hours. */
+      start: '17:00',
+      end: '19:00',
+      /** schema.org DayOfWeek */
+      schemaDay: 'https://schema.org/Thursday',
+    },
+  ],
 
   venue: {
     name: 'Gymsalen, Årstad videregående skole',
@@ -73,7 +85,10 @@ export const site = {
   foundedYear: 2014,
 } as const;
 
-export type Locale = 'no' | 'en';
-
 export const locales = ['no', 'en'] as const;
 export const defaultLocale: Locale = 'no';
+
+export const formatTrainingTimes = (
+  locale: Locale,
+  format: (day: string, start: string, end: string) => string,
+): string[] => site.training.map(({ day, start, end }) => format(day[locale], start, end));

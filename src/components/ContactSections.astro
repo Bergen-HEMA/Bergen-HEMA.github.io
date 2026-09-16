@@ -4,7 +4,7 @@ import Prose from './Prose.astro';
 import Figure from './Figure.astro';
 import type { SiteContent } from '../content/types';
 import { getAlt } from '../content/alt';
-import { site, type Locale } from '../site';
+import { formatTrainingTimes, site, type Locale } from '../site';
 import { t } from '../i18n/ui';
 
 import sparringPair from '../assets/photos/sparring-pair.jpg';
@@ -17,6 +17,7 @@ interface Props {
 const { content, locale } = Astro.props;
 const alt = getAlt(locale);
 const strings = t(locale);
+const trainingTimes = formatTrainingTimes(locale, strings.trainingTime);
 
 const channels = [
   {
@@ -89,9 +90,9 @@ const channels = [
       <Prose body={content.visitBody} class="mt-3 text-base" />
 
       <div class="border-line bg-surface-raised mt-7 border p-7 lg:p-8">
-        <p class="text-accent-ink text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
-          {strings.trainingTime(site.training.day[locale], site.training.start, site.training.end)}
-        </p>
+        <div class="text-accent-ink space-y-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+          {trainingTimes.map((time) => <p>{time}</p>)}
+        </div>
         <address class="text-ink mt-4 text-lg leading-relaxed not-italic">
           {site.venue.name}<br />
           {site.venue.street}<br />

@@ -213,7 +213,7 @@ export const en: SiteContent = {
     times: {
       title: 'Training times',
       body: [
-        'Regular training is <strong>Thursdays, 17:00–19:00</strong>.',
+        'Regular training is <strong>Tuesdays, 19:00–21:00</strong> and <strong>Thursdays, 17:00–19:00</strong>.',
         `Open sparring and other activities outside regular training are announced on Spond and on the <a href="${site.links.discord}" target="_blank" rel="noopener">Bergen HEMA Discord server</a>.`,
       ],
     },

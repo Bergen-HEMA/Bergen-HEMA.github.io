@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import mark from '../assets/brand/mark.png';
-import { site, type Locale } from '../site';
+import { formatTrainingTimes, site, type Locale } from '../site';
 import { navOrder, path, t } from '../i18n/ui';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const strings = t(locale);
-const day = site.training.day[locale];
+const trainingTimes = formatTrainingTimes(locale, strings.trainingTime);
 const year = new Date().getFullYear();
 
 const social = [
@@ -53,9 +53,9 @@ const social = [
       <div>
         <h2 class="eyebrow eyebrow-plain">{strings.footer.practical}</h2>
         <address class="mt-5 space-y-3 text-sm not-italic">
-          <p class="text-ink font-medium">
-            {strings.trainingTime(day, site.training.start, site.training.end)}
-          </p>
+          <div class="text-ink space-y-1 font-medium">
+            {trainingTimes.map((time) => <p>{time}</p>)}
+          </div>
           <p class="text-ink-muted leading-relaxed">
             {site.venue.name}<br />
             {site.venue.street}<br />

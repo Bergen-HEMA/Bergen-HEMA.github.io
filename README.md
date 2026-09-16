@@ -30,7 +30,7 @@ Node 20 or newer.
 | What you want to change | File |
 | --- | --- |
 | Any body copy, heading, FAQ answer | `src/content/no.ts` and `src/content/en.ts` |
-| Prices, bank account, Vipps, address, training time, board members, social links | `src/site.ts` |
+| Prices, bank account, Vipps, address, training schedule, board members, social links | `src/site.ts` |
 | Navigation labels, buttons, and other small UI words | `src/i18n/ui.ts` |
 | Image descriptions for screen readers | `src/content/alt.ts` |
 | Page titles and search-result descriptions | the `meta` block at the top of `no.ts` / `en.ts` |
@@ -59,10 +59,10 @@ supplied by a visitor. Do not paste HTML from elsewhere into these files.
 
 ### One fact, one place
 
-Prices, the training time, the account number and the address live only in
-`src/site.ts`. Change the training day there and it updates the header ticker,
-the membership page, the contact page, the footer and the structured data
-Google reads. Don't hard-code them into the copy.
+Prices, the training schedule, the account number and the address live only in
+`src/site.ts`. Change the training slots there and it updates the header
+ticker, the membership page, the contact page, the footer and the structured
+data Google reads. Don't hard-code them into the copy.
 
 ---
 
