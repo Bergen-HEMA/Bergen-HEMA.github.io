@@ -53,9 +53,9 @@ const social = [
       <div>
         <h2 class="eyebrow eyebrow-plain">{strings.footer.practical}</h2>
         <address class="mt-5 space-y-3 text-sm not-italic">
-          <div class="text-ink space-y-1 font-medium">
-            {trainingTimes.map((time) => <p>{time}</p>)}
-          </div>
+          <ul class="text-ink space-y-1 font-medium">
+            {trainingTimes.map((time) => <li>{time}</li>)}
+          </ul>
           <p class="text-ink-muted leading-relaxed">
             {site.venue.name}<br />
             {site.venue.street}<br />

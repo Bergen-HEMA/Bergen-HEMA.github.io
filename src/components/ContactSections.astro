@@ -90,9 +90,9 @@ const channels = [
       <Prose body={content.visitBody} class="mt-3 text-base" />
 
       <div class="border-line bg-surface-raised mt-7 border p-7 lg:p-8">
-        <div class="text-accent-ink space-y-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
-          {trainingTimes.map((time) => <p>{time}</p>)}
-        </div>
+        <ul class="text-accent-ink space-y-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+          {trainingTimes.map((time) => <li>{time}</li>)}
+        </ul>
         <address class="text-ink mt-4 text-lg leading-relaxed not-italic">
           {site.venue.name}<br />
           {site.venue.street}<br />
